@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 
 public class XboxController extends GenericHID {
 	private int port;
-    private DriverStation station;
+	private DriverStation station;
 
 	public XboxController(int port) {
 		super(port);
@@ -34,9 +34,9 @@ public class XboxController extends GenericHID {
 	
 	// CUSTOM
 	public boolean getTrigger(Hand hand) {
-        return hand == Hand.kLeft ? getRawAxis(2) > .9 : getRawAxis(3) > .9;
-    }
-
+		return hand == Hand.kLeft ? getRawAxis(2) > .9 : getRawAxis(3) > .9;
+	}
+	
 	@Override
 	public int getPOV(int pov) {
 		return station.getStickPOV(port, pov);
