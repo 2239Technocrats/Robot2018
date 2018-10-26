@@ -51,7 +51,7 @@ public class AutonomousAccelerator implements Action {
 		encoderLeft.setSelectedSensorPosition(0,0,100);
 		encoderRight.setSelectedSensorPosition(0,0,100);
 		
-		if(time >= 0){
+		if(time > 0){
 			timer.start();
 			while(timer.get() < time){
 				left.set(leftSpeed);
@@ -68,20 +68,28 @@ public class AutonomousAccelerator implements Action {
 				System.out.println("current encoder value left: " + getEncoderValue(encoderLeft));
 				System.out.println("current encoder value right: " + getEncoderValue(encoderRight));
 				left.set(leftSpeed);
+				System.out.println("Left speed:" + leftSpeed);
 				right.set(rightSpeed);
 				grabberWheels.set(grabberWheelsSpeed);
+				System.out.println("grabberWheelsSpeed" + grabberWheelsSpeed);
 				lift.set(liftSpeed);
+				System.out.println("lift speed: " + liftSpeed);
 				grabberSolenoid.set(grabberState);
+				System.out.println("grabberState: " + grabberState);
 			}
 			return true;
 		}
 		else if(leftDistance < 0 || rightDistance < 0){
 			while(getEncoderValue(encoderLeft) <= leftDistance*moveTicks && getEncoderValue(encoderRight) <= rightDistance*moveTicks){
 				left.set(leftSpeed);
+				System.out.println("Left speed:" + leftSpeed);
 				right.set(rightSpeed);
 				grabberWheels.set(grabberWheelsSpeed);
+				System.out.println("grabberWheelsSpeed" + grabberWheelsSpeed);
 				lift.set(liftSpeed);
+				System.out.println("lift speed: " + liftSpeed);
 				grabberSolenoid.set(grabberState);
+				System.out.println("grabberState: " + grabberState);
 			}
 			return true;
 		}
