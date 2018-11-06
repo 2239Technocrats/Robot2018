@@ -94,7 +94,7 @@ public class Robot extends IterativeRobot {
 	public boolean xboxControl = true;
 	public boolean controlSwapEnabled = false;
 	int autoStep = 0; // 0 if autonomous has not been planned, 1 if
-					  // planned but not done, 2 if done
+			  // planned but not done, 2 if done
 	double autoVolts = 0;
 	double maxAutoVolts = .8;
 	// double testAngle = 0;
@@ -197,11 +197,14 @@ public class Robot extends IterativeRobot {
 		// myPDP = new PowerDistributionPanel();
 		// myPDP.getVoltage();
 		try {
-			navSensor = new AHRS(SPI.Port.kMXP); /*
-									 * Alternatives: SerialPort.Port.kMXP,
-									 * I2C.Port.kMXP or SerialPort.Port.kUSB
-									 */
+			
+			navSensor = new AHRS(SPI.Port.kMXP);
+			/*
+			 * ^^ Alternatives: SerialPort.Port.kMXP,
+			 * I2C.Port.kMXP or SerialPort.Port.kUSB
+			 */
 			System.out.println("NavSensor = " + navSensor);
+			
 		} catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX-MXP: " + ex.getMessage(), true);
 		}
@@ -527,23 +530,29 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during autonomous
 	 */
-
 	@Override
 	public void autonomousPeriodic() {
+		// If there is no requested action
 		if (curAction == null) {
+			// Ask for the next action
 			curAction = autoGear.getNextAction();
+			// If there was no next action
 			if (curAction == null) {
+				// end
 				return;
 			}
 		}
 		runAction(false);
 	}
 
-	// Called in between the end of autonomous and the start of teleop
+	/**
+	 * This is the operator control inital function
+	 * Called after autonomous and before operator control
+	 */
 	@Override
 	public void teleopInit() {
+		// Sets speed to max
 		speed = 1;
-		// return speed to max
 		curAction = null;
 	}
 
@@ -553,132 +562,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		
-//		System.out.println("*******"+myCompressor.getPressureSwitchValue());
-		
-		// System.out.println("Running teleop periodic!");
-		// if (curAction == null) {
-		// System.out.println("auto accelerator is null");
-		// if no action, set accelerator to null
-		// }
-
-		// System.out.println("How fast the rearRightMotor is going:
-		// "+rearRightMotor.getEncVelocity());
-		// System.out.println("How far the rearRightMotor has gone:
-		// "+rearRightMotor.getEncPosition());
-		//
-		// System.out.println("How fast the rearLeftMotor is going:
-		// "+rearLeftMotor.getEncVelocity());
-		// System.out.println("How far the rearLeftMotor has gone:
-		// "+rearLeftMotor.getEncPosition());
-		//
-		// SmartDashboard.putBoolean("Trigger", toggleReadys[0]); //TODO
-		// uncomment
-//
-//		boolean[] triggers = new boolean[toggleAmt];
-//		// Go through each toggle
-//		// Set all the values in triggers appropriately.
-//		
-//		
-//		
-//		for (int index = 0; index < toggleAmt; index++) {
-//			// 0: Gear Shift
-//			// 1: Open/Close Grabber
-//			// 2: Speed Change
-//
-//			// see if the buttons are pushed down or not
-//			switch (index) {
-//			
-//			case 0:
-//				triggers[index] = controller.getRawButton(5) || controller.getRawButton(6);
-//				break;
-//			case 1:
-//				triggers[index] = controller2.getRawButton(5) || controller2.getRawButton(6);
-//				break;
-//			case 2:
-//				triggers[index] = controller.getRawButton(1);
-//		 
-//			default:
-//				break; // we are no longer using this toggle button
-//			}
-//
-//			// actually update/run
-//			boolean isReady = toggleReadys[index]; // is this button ready to be
-//													// activated/pressed down
-//			boolean isTriggered = triggers[index];
-//			if (isReady) {
-//				if (isTriggered) { // button is down and this is the first time
-//									// I've noticed
-//					// fire the trigger; the button has been pressed!
-//					System.out.println("Checking index...");
-//					switch (index) {
-//					
-//					case 0:
-//						if (gearIsOpen) {
-//							// TODO if these are changed, make sure the pipes
-//							// are switched on SpiderBot
-//							gearShift.set(false); // close it //TODO make sure
-//													// these are accurate
-//							gearIsOpen = false;
-//							System.out.println("not open");
-//						} else {
-//							gearShift.set(true); // open it
-//							gearIsOpen = true;
-//							System.out.println("open");
-//
-//						}
-//						
-//						// // TODO
-//						// delete
-//						break; 
-//					
-//					case 1:
-//						
-//						if (grabberIsOpen) {
-//							System.out.println("grabber closed");
-//							openGrabber.set(false);
-//							grabberIsOpen = false;
-//							
-//						} else {
-//							System.out.println("grabber opened");
-//							openGrabber.set(true);
-//							grabberIsOpen = true;
-//						}
-//						break;
-//					case 2:
-//						if (speed == 1){
-//							speed = .7;
-//						} else {
-//							speed = 1;
-//						}
-//						
-//					//
-//					// case 2:
-//					// System.out.println("Starting a new rotation!");
-//					// double turnAngle = 180;
-//					// //public RotationAccelerationHelper (TechnoDrive
-//					// driveTrain, AHRS navSensor, double turnAngle, double
-//					// maxVelocity)
-//					// curAction = new RotationAccelerator(drive, navSensor,
-//					// turnAngle, .8);
-//					// break;
-//					//
-//					
-//					default:
-//						break; // we are no longer using this toggle button
-//
-//					}
-//					toggleReadys[index] = false; // Don't notice it anymore
-//													// until the button is
-//													// lifted up
-//				}
-//			} else { // if not ready
-//				if (!isTriggered) { // button is no longer up (or just isn't up)
-//					toggleReadys[index] = true; // I'm ready for it to be pushed
-//												// down again
-//				}
-//			}
-//		}
-
 		runAction();
 		if (controller.getRawButtonPressed(5)||controller.getRawButtonPressed(6)) {
 			if (gearIsOpen) {
@@ -800,14 +683,14 @@ public class Robot extends IterativeRobot {
 	public void runAction(boolean teleop) {
 		
 		// System.out.println("POV: " + controller.getSimplePOV());
+		// If we don't have an action
 		if (curAction != null) {
-			if (teleop && controller.getSimplePOV() == 2) { // If the button
-															// that cancels the
-															// turn is pressed
-															// then cancel the
-															// turn.
+			// If the button that cancels the turn is pressed, (D-Pad Right)
+			// cancel the turn.
+			if (teleop && controller.getSimplePOV() == 2) {
 				curAction = null;
-			} else {
+			}
+			else {
 				// System.out.println("I'm going to move autonomously!"); // If
 				// we
 				// don't
