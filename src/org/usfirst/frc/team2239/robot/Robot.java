@@ -267,9 +267,9 @@ public class Robot extends IterativeRobot {
 	public Action[] getScenarioTestDrive() {
 		System.out.println("testDrive start");
 		Action[] actions = new Action[1];
-		actions[0] = new AutonomousAccelerator(left, right, grabberWheels, lift, leftFollowerMotor1, rightFollowerMotor2, openGrabber, -1.0, .35, .1, -.1,  true, 12, 12, 0);
+		actions[0] = new AutonomousAccelerator(drive, grabberWheels, lift, encoderMotors, openGrabber, -1.0, .35, .1, -.1,  true, 12, 0);
 //		actions[0] = new AutonomousAccelerator(left, right, grabberWheels, lift, leftFollowerMotor1, rightFollowerMotor, openGrabber, -1.0, 1.0, .1, -.1,  true, 0, 0, 2.0);
-//		actions[0] = new EncoderAccelerator(drive, encoderMotors, 1, 1);
+//		actions[0] = new EncoderAccelerator(drive, encoderMotors, 12, .5);
 		System.out.println("TestDrive");
 		//inches,power
 		return actions;
@@ -749,11 +749,11 @@ public class Robot extends IterativeRobot {
 		if (/*controller2.getRawButton(3)||*/alternate.getRawButton(6)) {
 			// Button X = lift up
 			System.out.println("raising lift");
-			lift.set(1);
+			lift.set(-1);
 		} else if (/*controller2.getRawButton(4)||*/alternate.getRawButton(4)) {
 			// Button Y = lift down
 			System.out.println("lowering lift");
-			lift.set(-1);
+			lift.set(1);
 		} else {
 			lift.set(0);
 		}

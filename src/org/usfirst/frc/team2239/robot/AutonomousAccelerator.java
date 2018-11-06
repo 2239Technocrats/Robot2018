@@ -12,10 +12,8 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class AutonomousAccelerator implements Action {
 	
 	private Timer timer;
-	private SpeedControllerGroup left;
-	private SpeedControllerGroup right;
-	private WPI_TalonSRX encoderLeft;
-	private WPI_TalonSRX encoderRight;
+	private TechnoDrive driveTrain;
+	private WPI_TalonSRX[] encoderMotors;
 	private SpeedControllerGroup grabberWheels;
 	private WPI_TalonSRX lift;
 	private Solenoid grabberSolenoid;
@@ -24,15 +22,12 @@ public class AutonomousAccelerator implements Action {
 	private double grabberWheelsSpeed;
 	private double liftSpeed;
 	private boolean grabberState;
-	private double leftDistance;
-	private double rightDistance;
+	private double distance;
 	private double time;
 	private double moveTicks = 4*Math.PI*1024;
-	public AutonomousAccelerator(SpeedControllerGroup left, SpeedControllerGroup right, SpeedControllerGroup grabberWheels, WPI_TalonSRX lift, WPI_TalonSRX encoderLeft, WPI_TalonSRX encoderRight, Solenoid grabberSolenoid, double leftSpeed, double rightSpeed, double grabberWheelsSpeed, double liftSpeed,  boolean grabberState, double leftDistance, double rightDistance, double time) {
-		this.left = left;
-		this.right = right;
-		this.encoderLeft = encoderLeft;
-		this.encoderRight = encoderRight;
+	public AutonomousAccelerator(TechnoDrive driveTrain, SpeedControllerGroup grabberWheels, WPI_TalonSRX lift, WPI_TalonSRX[] encoderMotors, Solenoid grabberSolenoid, double leftSpeed, double rightSpeed, double grabberWheelsSpeed, double liftSpeed,  boolean grabberState, double distance, double time) {
+		this.driveTrain = driveTrain;
+		this.encoderMotors = encoderMotors;
 		this.grabberWheels = grabberWheels;
 		this.lift = lift;
 		this.grabberSolenoid = grabberSolenoid;
@@ -41,21 +36,20 @@ public class AutonomousAccelerator implements Action {
 		this.grabberWheelsSpeed = grabberWheelsSpeed;
 		this.liftSpeed = liftSpeed;
 		this.grabberState = grabberState;
-		this.leftDistance = leftDistance;
-		this.rightDistance = rightDistance;
+		this.distance = distance*moveTicks;
 		this.time = time;
 	}
 	@Override
 	public boolean run() {
 		
-		encoderLeft.setSelectedSensorPosition(0,0,100);
-		encoderRight.setSelectedSensorPosition(0,0,100);
+		for(WPI_TalonSRX motor : encoderMotors){
+			motor.setSelectedSensorPosition(0, 0, 100);
+		}
 		
 		if(time > 0){
 			timer.start();
 			while(timer.get() < time){
-				left.set(leftSpeed);
-				right.set(rightSpeed);
+				driveTrain.tankDrive(leftSpeed, rightSpeed);
 				grabberWheels.set(grabberWheelsSpeed);
 				lift.set(liftSpeed);
 				grabberSolenoid.set(grabberState);
@@ -63,13 +57,12 @@ public class AutonomousAccelerator implements Action {
 			timer.reset();
 			return true;
 		}
-		else if(leftDistance > 0 || rightDistance > 0){
-			while(getEncoderValue(encoderLeft) >= leftDistance && getEncoderValue(encoderRight) >= rightDistance){
-				System.out.println("current encoder value left: " + getEncoderValue(encoderLeft));
-				System.out.println("current encoder value right: " + getEncoderValue(encoderRight));
-				left.set(leftSpeed);
+		else if(distance > 0){
+			while(getEncoderValue(encoderMotors[0]) > distance || getEncoderValue(encoderMotors[1]) > distance){
+				System.out.println("current encoder value left: " + getEncoderValue(encoderMotors[0]));
+				System.out.println("current encoder value right: " + getEncoderValue(encoderMotors[1]));
 				System.out.println("Left speed:" + leftSpeed);
-				right.set(rightSpeed);
+				driveTrain.tankDrive(leftSpeed, rightSpeed);
 				grabberWheels.set(grabberWheelsSpeed);
 				System.out.println("grabberWheelsSpeed" + grabberWheelsSpeed);
 				lift.set(liftSpeed);
@@ -79,11 +72,9 @@ public class AutonomousAccelerator implements Action {
 			}
 			return true;
 		}
-		else if(leftDistance < 0 || rightDistance < 0){
-			while(getEncoderValue(encoderLeft) <= leftDistance*moveTicks && getEncoderValue(encoderRight) <= rightDistance*moveTicks){
-				left.set(leftSpeed);
-				System.out.println("Left speed:" + leftSpeed);
-				right.set(rightSpeed);
+		else if(distance < 0){
+			while(getEncoderValue(encoderMotors[0]) < distance || getEncoderValue(encoderMotors[1]) < distance){
+				driveTrain.tankDrive(leftSpeed, rightSpeed);
 				grabberWheels.set(grabberWheelsSpeed);
 				System.out.println("grabberWheelsSpeed" + grabberWheelsSpeed);
 				lift.set(liftSpeed);
@@ -95,8 +86,7 @@ public class AutonomousAccelerator implements Action {
 		}
 		else
 		{
-			left.set(0);
-			right.set(0);
+			driveTrain.tankDrive(0, 0);;
 			grabberWheels.set(0);
 			lift.set(0);
 			grabberSolenoid.set(false);
