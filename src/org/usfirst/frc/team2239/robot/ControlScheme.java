@@ -17,8 +17,12 @@ public class ControlScheme {
 	private final String TCJ = "TOGGLE_CONTROLLER";
 	private final String TCJJ = "TOGGLE_CONTROLLER";
 	
+	//Tank Drive
 	private final String LS = "LEFT_SIDE";
 	private final String RS = "RIGHT_SIDE";
+	//Arcade Drive
+	private final String FW = "FORWARDS";
+	private final String ROT = "ROTATION";
 	
 	public HashMap<String, Integer> active;
 	private HashMap<String, Integer> x = new HashMap<String, Integer>();
@@ -63,33 +67,35 @@ public class ControlScheme {
 		
 		// buttons
 		j.put(GB, 1);
-		j.put(TCJ, 2);
+		j.put(SP, 2);
 		j.put(GT, 3);
-		j.put(LR, 4);
+		j.put(LL, 4);
 		j.put(GS, 5);
-		j.put(GT, 6);
-		j.put("NONE", 7);
-		j.put("NONE", 8);
-		j.put("NONE", 9);
-		j.put("NONE", 10);
-		j.put("NONE", 11);
+		j.put(LR, 6);
+		j.put(TCX, 7);
+		j.put(TCXX, 8);
+		j.put(TCXJ, 9);
+		j.put(TCJ, 10);
+		j.put("TCJJ", 11);
 		j.put("NONE", 12);
 
 		// axis
-		j.put(, 0);
-		j.put(, 1);
-		j.put(, 2);
-		j.put(, 3);
+		j.put(FW, 0);
+		j.put("NONE", 1);
+		j.put(ROT, 2);
+		j.put(SP, 3);
 
 		// POV
-		j.put(TC, 1);
+		j.put("NONE", 1);
 		j.put("NONE", 2);
 		j.put("NONE", 3);
 		j.put("NONE", 4);
-		j.put(SS, 5);
+		j.put("NONE", 5);
 		j.put("NONE", 6);
 		j.put("NONE", 7);
 		j.put("NONE", 8);	
+		
+		
 	}
 	
 	public void setActive(String controlScheme){
