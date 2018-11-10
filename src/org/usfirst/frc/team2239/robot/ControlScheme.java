@@ -17,6 +17,7 @@ public class ControlScheme {
 	private final String TCXJ = "TOGGLE_CONTROLLER";
 	private final String TCJ = "TOGGLE_CONTROLLER";
 	private final String TCJJ = "TOGGLE_CONTROLLER";
+	private final String UPDATE = "UPDATE_ACTIVE_CONTROLLERS";
 	
 	//Tank Drive
 	private final String LS = "LEFT_SIDE";
@@ -34,7 +35,7 @@ public class ControlScheme {
 		this.driveTrain = driveTrain;
 	}
 	
-	public void init(String name){
+	private void init(String name){
 		if(name == "x"){
 			active = new HashMap<String, Integer>();
 			// buttons
@@ -44,16 +45,16 @@ public class ControlScheme {
 			active.put(LR, 4);
 			active.put(GT, 5);
 			active.put(GT, 6);
-			active.put("NONE1", 7);
-			active.put("NONE2", 8);
-			active.put("NONE3", 9);
-			active.put("NONE4", 10);
+			active.put(UPDATE, 7);
+			active.put(UPDATE, 8);
+			active.put("NONE", 9);
+			active.put("NONE", 10);
 			// axis
-			active.put("NOTE5", 0);
+			active.put("NONE", 0);
 			active.put(LS, 1);
 			active.put(GS, 2);
 			active.put(GB, 3);
-			active.put("NONE6", 4);
+			active.put("NONE", 4);
 			active.put(RS, 5);
 			// POV
 			active.put(TCX, 1);
@@ -62,8 +63,8 @@ public class ControlScheme {
 			active.put(TCJ, 4);
 			active.put(TCJJ, 5);
 			active.put(SS, 6);
-			active.put("NONE7", 7);
-			active.put("NONE8", 8);
+			active.put("NONE", 7);
+			active.put("NONE", 8);
 		}
 		
 		else if(name == "j"){
@@ -79,8 +80,8 @@ public class ControlScheme {
 			active.put(TCXX, 8);
 			active.put(TCXJ, 9);
 			active.put(TCJ, 10);
-			active.put("TCJJ", 11);
-			active.put(SS, 12);
+			active.put(TCJJ, 11);
+			active.put(UPDATE, 12);
 
 			// axis
 			active.put(FW, 0);
@@ -119,7 +120,6 @@ public class ControlScheme {
 	
 	public void setActive(String controlScheme){
 		init(controlScheme);
-			System.out.println("@init controlScheme formatted wrong");
 	}
 	
 	
