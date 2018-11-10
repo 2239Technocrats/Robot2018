@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2239.robot;
 
 import java.util.*;
+import edu.wpi.first.wpilibj.drive.*;
 
 public class ControlScheme {
 	private final String SP = "SPEED";
@@ -24,94 +25,101 @@ public class ControlScheme {
 	private final String FW = "FORWARDS";
 	private final String ROT = "ROTATION";
 	
-	public HashMap<String, Integer> active;
-	private HashMap<String, Integer> x = new HashMap<String, Integer>();
-	private HashMap<String, Integer> xx = new HashMap<String, Integer>();
-	private HashMap<String, Integer> xj = new HashMap<String, Integer>();
-	private HashMap<String, Integer> j = new HashMap<String, Integer>();
-	private HashMap<String, Integer> jj = new HashMap<String, Integer>();
 	
-	public ControlScheme(String controlScheme) {
-		init();
-		setActive(controlScheme);
+	public HashMap<String, Integer> active;
+	public RobotDriveBase driveTrain;
+	
+	public ControlScheme(String name, RobotDriveBase driveTrain) {
+		init(name);
+		this.driveTrain = driveTrain;
 	}
 	
-	public void init(){
-		// buttons
-		x.put(SP, 1);
-		x.put(SH, 2);
-		x.put(LL, 3);
-		x.put(LR, 4);
-		x.put(GT, 5);
-		x.put(GT, 6);
-		x.put("NONE1", 7);
-		x.put("NONE2", 8);
-		x.put("NONE3", 9);
-		x.put("NONE4", 10);
-		// axis
-		x.put("NOTE5", 0);
-		x.put(LS, 1);
-		x.put(GS, 2);
-		x.put(GB, 3);
-		x.put("NONE6", 4);
-		x.put(RS, 5);
-		// POV
-		x.put(TCX, 1);
-		x.put(TCXX, 2);
-		x.put(TCXJ, 3);
-		x.put(TCJ, 4);
-		x.put(TCJJ, 5);
-		x.put("ss", 6);
-		x.put("NONE7", 7);
-		x.put("NONE8", 8);
+	public void init(String name){
+		if(name == "x"){
+			active = new HashMap<String, Integer>();
+			// buttons
+			active.put(SP, 1);
+			active.put(SH, 2);
+			active.put(LL, 3);
+			active.put(LR, 4);
+			active.put(GT, 5);
+			active.put(GT, 6);
+			active.put("NONE1", 7);
+			active.put("NONE2", 8);
+			active.put("NONE3", 9);
+			active.put("NONE4", 10);
+			// axis
+			active.put("NOTE5", 0);
+			active.put(LS, 1);
+			active.put(GS, 2);
+			active.put(GB, 3);
+			active.put("NONE6", 4);
+			active.put(RS, 5);
+			// POV
+			active.put(TCX, 1);
+			active.put(TCXX, 2);
+			active.put(TCXJ, 3);
+			active.put(TCJ, 4);
+			active.put(TCJJ, 5);
+			active.put(SS, 6);
+			active.put("NONE7", 7);
+			active.put("NONE8", 8);
+		}
 		
-		// buttons
-		j.put(GB, 1);
-		j.put(SP, 2);
-		j.put(GT, 3);
-		j.put(LL, 4);
-		j.put(GS, 5);
-		j.put(LR, 6);
-		j.put(TCX, 7);
-		j.put(TCXX, 8);
-		j.put(TCXJ, 9);
-		j.put(TCJ, 10);
-		j.put("TCJJ", 11);
-		j.put("NONE", 12);
+		else if(name == "j"){
+			active = new HashMap<String, Integer>();
+			// buttons
+			active.put(GB, 1);
+			active.put(SP, 2);
+			active.put(GT, 3);
+			active.put(LL, 4);
+			active.put(GS, 5);
+			active.put(LR, 6);
+			active.put(TCX, 7);
+			active.put(TCXX, 8);
+			active.put(TCXJ, 9);
+			active.put(TCJ, 10);
+			active.put("TCJJ", 11);
+			active.put(SS, 12);
 
-		// axis
-		j.put(FW, 0);
-		j.put("NONE", 1);
-		j.put(ROT, 2);
-		j.put(SP, 3);
+			// axis
+			active.put(FW, 0);
+			active.put("NONE", 1);
+			active.put(ROT, 2);
+			active.put(SP, 3);
 
-		// POV
-		j.put("NONE", 1);
-		j.put("NONE", 2);
-		j.put("NONE", 3);
-		j.put("NONE", 4);
-		j.put("NONE", 5);
-		j.put("NONE", 6);
-		j.put("NONE", 7);
-		j.put("NONE", 8);	
+			// POV
+			active.put("NONE", 1);
+			active.put("NONE", 2);
+			active.put("NONE", 3);
+			active.put("NONE", 4);
+			active.put("NONE", 5);
+			active.put("NONE", 6);
+			active.put("NONE", 7);
+			active.put("NONE", 8);				
+		}
 		
+		else if(name == "xx"){
+			
+		}
 		
+		else if(name == "jj"){
+			
+		}
+		
+		else if(name == "xj"){
+			
+		}
+		
+		else{
+			System.out.println("@init controlScheme formatted wrong");
+		}
+			
 	}
 	
 	public void setActive(String controlScheme){
-		if(controlScheme == "x"){
-			active = x;
-		}else if(controlScheme == "xx"){
-			
-		}else if(controlScheme == "xj"){
-			
-		}else if(controlScheme == "j"){
-			
-		}else if(controlScheme == "jj"){
-			
-		}else{
-			System.out.println("@setActive controlScheme formatted wrong");
-		}
+		init(controlScheme);
+			System.out.println("@init controlScheme formatted wrong");
 	}
 	
 	

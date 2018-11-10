@@ -5,21 +5,13 @@ import org.usfirst.frc.team2239.robot.XboxController;
 import java.util.*;
 import edu.wpi.first.wpilibj.DriverStation;
 
+
+
 public class TechnoUI{
-	public static void testfunC() {
-		HashMap<String, Integer> test = new HashMap<String, Integer>();
-		test.put("Speed", 4);
-		test.put("Graber", 7);
-		Set set = test.entrySet();
-		Iterator iter = set.iterator();
-		while (iter.hasNext()) {
-			Map.Entry mentry = (Map.Entry)iter.next();
-			System.out.println(mentry.getValue());
-		}
-	}
+	
 	DriverStation dsi;
 	private int scheme = -1;
-	String activeController;
+	String activeControllers;
 	XboxController x;
 	XboxController x2;
 	Joystick j;
@@ -28,11 +20,11 @@ public class TechnoUI{
 		updateControllers();
 	}
 	public void updateControllers(){
-		activeController = "";
-		if(dsi.getInstance().getJoystickIsXbox(0)){
-			activeController +='x';
-		}else if(dsi.get){
-			activeController +='j';
+		activeControllers = "";
+		if(dsi.getInstance().getJoystickName(0) == "Controller (Xbox 360 Pro Ex"){
+			activeControllers +='x';
+		}else if(dsi.getJoystickName(0) == ""){
+			activeControllers +='j';
 		}
 	}
 	public boolean setScheme(String setTo) {
