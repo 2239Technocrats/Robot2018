@@ -1,10 +1,10 @@
 package org.usfirst.frc.team2239.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.drive.*;
 import org.usfirst.frc.team2239.robot.XboxController;
 import java.util.*;
 import edu.wpi.first.wpilibj.DriverStation;
-
 
 
 public class TechnoUI{
@@ -16,23 +16,42 @@ public class TechnoUI{
 	XboxController x2;
 	Joystick j;
 	Joystick j2;
-	public TechnoUI(){
+	ControlScheme activeCS;
+	public TechnoUI(String name, RobotDriveBase driveTrain){
+		activeCS = new ControlScheme(name, driveTrain);
 		updateControllers();
+		activeCS.setActive(activeControllers);
+		
 	}
 	public void updateControllers(){
 		activeControllers = "";
-		if(dsi.getInstance().getJoystickName(0) == "Controller (Xbox 360 Pro Ex"){
+		if(dsi.getJoystickName(0) == "Controller (Xbox 360 Pro Ex)"){
 			activeControllers +='x';
-		}else if(dsi.getJoystickName(0) == ""){
+		}
+		if(dsi.getJoystickName(1) == "Controller (Xbox 360 Pro Ex)"){
+			activeControllers +='x';
+		}
+		if(dsi.getJoystickName(2) == "Logitech Extreme 3D"){
 			activeControllers +='j';
 		}
-	}
-	public boolean setScheme(String setTo) {
-		if (setTo == "deFault") {
-			scheme = 1;
-			return true;
+		if(dsi.getJoystickName(3) == "Logitech Extreme 3D"){
+			activeControllers +='j';
 		}
-		System.out.println("Unknown scheme selected: " + setTo);
-		return false;
+		
+	}
+	public void updateScheme(){
+		updateControllers();
+		setScheme(activeControllers);
+	}
+	public void setScheme(String setTo) {
+		if (setTo == "x"|| setTo == "xx" || setTo == "xj" || setTo == "j" || setTo == "jj"){
+			activeCS.setActive(setTo);
+		}
+	}
+	public void setDrive(RobotDriveBase driveTrain){
+		
+	}
+	public void controlRun(){
+		
 	}
 }

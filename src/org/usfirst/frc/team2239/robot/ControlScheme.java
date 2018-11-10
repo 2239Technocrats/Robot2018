@@ -85,8 +85,8 @@ public class ControlScheme {
 
 			// axis
 			active.put(FW, 0);
-			active.put("NONE", 1);
-			active.put(ROT, 2);
+			active.put(ROT, 1);
+			active.put("NONE", 2);
 			active.put(SP, 3);
 
 			// POV
