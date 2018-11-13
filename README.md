@@ -1,11 +1,11 @@
 # Robot 2018
 FIRST team 2239's robot code for 2018
 
-# Controller Documentation
-Required imports
+# Documentation
+Controller Required Imports
 --  
-`edu.wpi.first.wpilibj.XboxController;` Initalizing and using Xbox Controllers  
-`edu.wpi.first.wpilibj.Joystick;` Initalizing and using Joysticks  
+`import edu.wpi.first.wpilibj.XboxController;` Initalizing and using Xbox Controllers  
+`import edu.wpi.first.wpilibj.Joystick;` Initalizing and using Joysticks  
 
 Initalizing a Controller
 --  
@@ -63,3 +63,12 @@ Retruns a boolean, true if the POV of controllerClass is in the position defined
 7 - Left  
 8 - Left-Up  
   
+Required Motor Imports
+--  
+`import com.ctre.phoenix.motorcontroll.can.WPI_TalonSRX` Motorcontroller's api  
+
+Controlling Motors
+--  
+`WPI_TalonSRX.set(double powerlevel);`  
+Sets the level of power provided to motor controller of typ WPI_TalonSRX to powerlevel.  
+**1.0 >= powerlevel >= -1.0**
