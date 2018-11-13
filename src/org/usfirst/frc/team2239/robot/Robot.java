@@ -30,6 +30,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.XboxController;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -650,7 +651,7 @@ public class Robot extends IterativeRobot {
 //		}
 
 		// Up=0, up-right = 1, right = 2. Goes to 7.
-		int POV = controller.getSimplePOV();
+		int POV = controller.getPOV();
 		System.out.print(POV);
 	}
 
@@ -687,7 +688,7 @@ public class Robot extends IterativeRobot {
 		if (curAction != null) {
 			// If the button that cancels the turn is pressed, (D-Pad Right)
 			// cancel the turn.
-			if (teleop && controller.getSimplePOV() == 2) {
+			if (teleop && controller.getPOV() == 2) {
 				curAction = null;
 			}
 			else {

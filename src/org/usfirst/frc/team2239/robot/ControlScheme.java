@@ -4,6 +4,7 @@ import java.util.*;
 import edu.wpi.first.wpilibj.drive.*;
 
 public class ControlScheme {
+	public char[] triggerTypes = new char[18];
 	private final String SP = "SPEED";
 	private final String SH = "SHIFT";
 	private final String GT = "GRABBER_TOGGLE";
@@ -118,6 +119,9 @@ public class ControlScheme {
 			
 	}
 	
+	public void setDriveTrain(RobotDriveBase driveTrain){
+		this.driveTrain = driveTrain;
+	}
 	public void setActive(String controlScheme){
 		init(controlScheme);
 	}

@@ -2,9 +2,9 @@ package org.usfirst.frc.team2239.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.*;
-import org.usfirst.frc.team2239.robot.XboxController;
 import java.util.*;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.XboxController;
 
 
 public class TechnoUI{
@@ -49,7 +49,7 @@ public class TechnoUI{
 		}
 	}
 	public void setDrive(RobotDriveBase driveTrain){
-		
+		this.activeCS.setDriveTrain(driveTrain);
 	}
 	public void controlRun(){
 		
