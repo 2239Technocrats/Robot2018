@@ -2,11 +2,22 @@
 FIRST team 2239's robot code for 2018
 
 # Controller Documentation
+Required imports
+--  
+`edu.wpi.first.wpilibj.XboxController;` Initalizing and using Xbox Controllers  
+`edu.wpi.first.wpilibj.Joystick;` Initalizing and using Joysticks  
+
+Initalizing a Controller
+--  
+`public XboxController controller = new XboxController(int controllerPort);`  
+`public Joystick controller = new Joystick(int controllerPort);`  
+Initalizes either a XboxController or a Joystick and gives it the port controllerPort.
+
 Buttons
 --
-`DriverStation.getStickButton(int controllerPort, byte button);`  
-Returns a boolean, true if the controller on controllerPort has button pushed.  
-**Button values**  
+`controllerClass.getRawButton(int button);`  
+Returns a boolean, true if button on controllerClass has button pushed.  
+**Button values (XboxController)**  
 1 - A  
 2 - B  
 3 - X  
@@ -20,9 +31,9 @@ Returns a boolean, true if the controller on controllerPort has button pushed.
   
 Axis (Joysticks, Triggers)
 --
-`DriverStation.getStickAxis(int controllerPort, int axis);`  
-Returns a double between -1 and 1 for joysticks and 0 to 1 for triggers representing the current position of said axis. controllerPort is the port of the controller checked, and axis represents what axis to check.  
-**Axis Values**  
+`controllerClass.getRawAxis(int which);`  
+Returns a double between -1 and 1 for joysticks and 0 to 1 for triggers representing the current position of said axis. Which represents what axis to check.  
+**Axis Values (XboxController)**  
 0 - Left Stick X  
 1 - Left Stick Y  
 2 - Left Trigger  
@@ -32,9 +43,9 @@ Returns a double between -1 and 1 for joysticks and 0 to 1 for triggers represen
   
 POV Positions (D-Pad)
 -- 
-`DriverStation.getStickPOV(int controllerPort, int position);`  
-Retruns a boolean, true if the POV of controller on controllerPort is in position.  
-**Position values**  
+`controllerClass.getPOV(int pov);`  
+Retruns a boolean, true if the POV of controllerClass is in the position defined by int pov.  
+**Position values (XboxController)**  
 0 - Idle  
 1 - Up  
 2 - Up-Right  
