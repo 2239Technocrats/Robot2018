@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2239.robot;
+package main.org.usfirst.frc.team2239.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
