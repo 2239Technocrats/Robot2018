@@ -28,6 +28,8 @@ Returns a boolean, true if button on controllerClass has button pushed.
 8 - Start  
 9 - Left Thumbstick  
 10 -  Right Thumbstick  
+**Button values (Joystick)**  
+Buttons labeled on physical joystick correspondingly  
   
 Axis (Joysticks, Triggers)
 --
@@ -39,13 +41,18 @@ Returns a double between -1 and 1 for joysticks and 0 to 1 for triggers represen
 2 - Left Trigger  
 3 - Right Trigger  
 4 - Right Stick X  
-5 - Right Stick Y
+5 - Right Stick Y  
+**Axis Values (Joystick)**  
+0 - X Axis (left/right)  
+1 - Y Axis (up/down)  
+2 - Z Rotation (twist)  
+3 - Slider  
   
 POV Positions (D-Pad)
 -- 
 `controllerClass.getPOV(int pov);`  
 Retruns a boolean, true if the POV of controllerClass is in the position defined by int pov.  
-**Position values (XboxController)**  
+**Position values (XboxController/Joystick)**  
 0 - Idle  
 1 - Up  
 2 - Up-Right  
