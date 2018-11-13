@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2239.robot;
+package main.org.usfirst.frc.team2239.robot;
 
 public class Contour {
 	//All these parameters will be visible to classes within the same package as this class (see "package" above)
