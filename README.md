@@ -69,6 +69,6 @@ Required Motor Imports
 
 Controlling Motors
 --  
-`WPI_TalonSRX.set(double powerlevel);`  
-Sets the level of power provided to motor controller of typ WPI_TalonSRX to powerlevel.  
-**1.0 >= powerlevel >= -1.0**
+`WPI_TalonSRX.set(double powerLevel);`  
+Sets the level of power provided to motor controller of typ WPI_TalonSRX to powerLevel.  
+**1.0 >= powerLevel >= -1.0**
