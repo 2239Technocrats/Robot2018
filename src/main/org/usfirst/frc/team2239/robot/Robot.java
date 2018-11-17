@@ -193,7 +193,7 @@ public class Robot extends IterativeRobot {
 		timer = new Timer();
 		controller = new XboxController(0);
 		controller2 = new XboxController(1); 
-		alternate = new Joystick(1);
+		alternate = new Joystick(2);
 
 		// myPDP = new PowerDistributionPanel();
 		// myPDP.getVoltage();

@@ -28,11 +28,9 @@ public class ControlScheme {
 	
 	private final char none = 's';					//s  (placeholder)
 	
-	public RobotDriveBase driveTrain;
-	
-	public ControlScheme(String name, RobotDriveBase driveTrain) {
+	public ControlScheme(String name) {
 		init(name);
-		this.driveTrain = driveTrain;
+		
 	}
 	
 	private void init(String name) {
@@ -49,34 +47,24 @@ public class ControlScheme {
 					{update, 'b', (char)8},
 					{none, 'b', (char)9},
 					{none, 'b', (char)10},
-					{none, 'a', (char)0},
-					{leftSide, 'a', (char)1},
-					{grabberSucc, 'a', (char)2},
-					{grabberBlow, 'a', (char)3},
-					{none, 'a', (char)4},
-					{rightSide, 'a', (char)5},
+					{none, 'a', (char)1},
+					{leftSide, 'a', (char)2},
+					{grabberSucc, 'a', (char)3},
+					{grabberBlow, 'a', (char)4},
+					{none, 'a', (char)5},
+					{rightSide, 'a', (char)6},
+					{toggleX, 'p', (char)1},
+					{toggleXX, 'p', (char)2},
+					{toggleXJ, 'p', (char)3},
+					{toggleJ, 'p', (char)4},
+					{toggleJJ, 'p', (char)5},
+					{CSVSave, 'p', (char)6},
+					{none, 'p', (char)7},
+					{none, 'p', (char)8}
 			};
 			triggerTypes = newTriggerTypes;
 			
-			// axis
-			triggerTypes[0][0] = 's';
-			triggerTypes[0][1] = 'a';
-			triggerTypes[0][2] = (char)1;
-			triggerTypes[0][0] = 'o';
-			triggerTypes[0][1] = 'a';
-			triggerTypes[0][2] = (char)2;
-			triggerTypes[0][0] = 'f';
-			triggerTypes[0][1] = 'a';
-			triggerTypes[0][2] = (char)3;
-			triggerTypes[0][0] = 'g';
-			triggerTypes[0][1] = 'a';
-			triggerTypes[0][2] = (char)4;
-			triggerTypes[0][0] = 's';
-			triggerTypes[0][1] = 'a';
-			triggerTypes[0][2] = (char)5;
-			triggerTypes[0][0] = 'p';
-			triggerTypes[0][1] = 'a';
-			triggerTypes[0][2] = (char)6;
+			
 			// POV
 			triggerTypes[0][0] = 'i';
 			triggerTypes[0][1] = 'o';
@@ -117,10 +105,6 @@ public class ControlScheme {
 		}
 	}
 	
-	public void setDriveTrain(RobotDriveBase driveTrain){
-		this.driveTrain = driveTrain;
-	}
-
 	public void setActive(String controlScheme){
 		init(controlScheme);
 	}
