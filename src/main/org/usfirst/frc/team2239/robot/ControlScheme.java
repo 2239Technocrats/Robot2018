@@ -5,33 +5,29 @@ import edu.wpi.first.wpilibj.drive.*;
 
 public class ControlScheme {
 	public char[][] triggerTypes = new char[20][3];
-	private final char speed = 'a';							//a
-	private final char shift = 'b';							//b
-	private final char grabber = 'c';						//c
-	private final char liftRaise = 'd';						//d
-	private final char liftLower = 'e';						//e
-	private final char grabberSucc = 'f';					//f
-	private final char grabberBlow = 'g';					//g
-	private final char CSVSave = 'h';						//h
-	private final char toggleX = 'i';						//i
-	private final char toggleXX = 'j';						//j
-	private final char toggleXJ = 'k';						//k
-	private final char toggleJ = 'l';						//l
-	private final char toggleJJ = 'm';						//m
-	private final char update = 'n';						//n
-	
+	private final char speed = 'a';					//a
+	private final char shift = 'b';					//b
+	private final char grabber = 'c';				//c
+	private final char liftRaise = 'd';				//d
+	private final char liftLower = 'e';				//e
+	private final char grabberSucc = 'f';			//f
+	private final char grabberBlow = 'g';			//g
+	private final char CSVSave = 'h';				//h
+	private final char toggleX = 'i';				//i
+	private final char toggleXX = 'j';				//j
+	private final char toggleXJ = 'k';				//k
+	private final char toggleJ = 'l';				//l
+	private final char toggleJJ = 'm';				//m
+	private final char update = 'n';				//n
 	//Tank Drive
-	private final char leftSide = 'o';						//o
-	private final char rightSide = 'p';						//p
+	private final char leftSide = 'o';				//o
+	private final char rightSide = 'p';				//p
 	//Arcade Drive
-	private final char forwards = 'q';						//q
-	private final char rotation = 'r';						//r
+	private final char forwards = 'q';				//q
+	private final char rotation = 'r';				//r
 	
-	private final char none = 's';							//s  (placeholder)
+	private final char none = 's';					//s  (placeholder)
 	
-	
-	
-	public HashMap<String, Integer> active;
 	public RobotDriveBase driveTrain;
 	
 	public ControlScheme(String name, RobotDriveBase driveTrain) {
@@ -39,9 +35,8 @@ public class ControlScheme {
 		this.driveTrain = driveTrain;
 	}
 	
-	private void init(String name){
-		if(name == "x"){
-			
+	private void init(String name) {
+		if(name == "x") {
 			// buttons
 			char[][] newTriggerTypes = {
 					{speed, 'b', (char)1},
@@ -108,61 +103,24 @@ public class ControlScheme {
 			triggerTypes[0][1] = 'p';
 			triggerTypes[0][2] = (char)8;
 		}
-		
-//		else if(name == "j"){
-//			active = new HashMap<String, Integer>();
-//			// buttons
-//			active.put(GB, 1);
-//			active.put(SP, 2);
-//			active.put(GT, 3);
-//			active.put(LL, 4);
-//			active.put(GS, 5);
-//			active.put(LR, 6);
-//			active.put(TCX, 7);
-//			active.put(TCXX, 8);
-//			active.put(TCXJ, 9);
-//			active.put(TCJ, 10);
-//			active.put(TCJJ, 11);
-//			active.put(UPDATE, 12);
-//
-//			// axis
-//			active.put(FW, 0);
-//			active.put(ROT, 1);
-//			active.put("NONE", 2);
-//			active.put(SP, 3);
-//
-//			// POV
-//			active.put("NONE", 1);
-//			active.put("NONE", 2);
-//			active.put("NONE", 3);
-//			active.put("NONE", 4);
-//			active.put("NONE", 5);
-//			active.put("NONE", 6);
-//			active.put("NONE", 7);
-//			active.put("NONE", 8);				
-//		}
-		
 		else if(name == "xx"){
 			
 		}
-		
 		else if(name == "jj"){
 			
 		}
-		
 		else if(name == "xj"){
 			
 		}
-		
-		else{
-			System.out.println("@init controlScheme formatted wrong");
+		else {
+			System.out.println("Unknown controlScheme name: " + name);
 		}
-			
 	}
 	
 	public void setDriveTrain(RobotDriveBase driveTrain){
 		this.driveTrain = driveTrain;
 	}
+
 	public void setActive(String controlScheme){
 		init(controlScheme);
 	}

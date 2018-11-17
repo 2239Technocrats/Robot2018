@@ -65,7 +65,7 @@ Retruns a boolean, true if the POV of controllerClass is in the position defined
   
 Required Motor Imports
 --  
-`import com.ctre.phoenix.motorcontroll.can.WPI_TalonSRX` Motorcontroller's api  
+`import com.ctre.phoenix.motorcontroll.can.WPI_TalonSRX` Motor controller's api  
 
 Controlling Motors
 --  

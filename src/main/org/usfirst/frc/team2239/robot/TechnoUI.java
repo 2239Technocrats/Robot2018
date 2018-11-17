@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 
 
-public class TechnoUI{
+public class TechnoUI {
 	
 	DriverStation dsi;
 	private int scheme = -1;
@@ -17,7 +17,7 @@ public class TechnoUI{
 	Joystick j;
 	Joystick j2;
 	ControlScheme activeCS;
-	public TechnoUI(String name, RobotDriveBase driveTrain){
+	public TechnoUI(String name, RobotDriveBase driveTrain) {
 		activeCS = new ControlScheme(name, driveTrain);
 		updateControllers();
 		activeCS.setActive(activeControllers);
@@ -25,17 +25,17 @@ public class TechnoUI{
 	}
 	public void updateControllers(){
 		activeControllers = "";
-		if(dsi.getJoystickName(0) == "Controller (Xbox 360 Pro Ex)"){
-			activeControllers +='x';
+		if(dsi.getJoystickName(0) == "Controller (Xbox 360 Pro Ex)") {
+			activeControllers += 'x';
 		}
-		if(dsi.getJoystickName(1) == "Controller (Xbox 360 Pro Ex)"){
-			activeControllers +='x';
+		if(dsi.getJoystickName(1) == "Controller (Xbox 360 Pro Ex)") {
+			activeControllers += 'x';
 		}
-		if(dsi.getJoystickName(2) == "Logitech Extreme 3D"){
-			activeControllers +='j';
+		if(dsi.getJoystickName(2) == "Logitech Extreme 3D") {
+			activeControllers += 'j';
 		}
-		if(dsi.getJoystickName(3) == "Logitech Extreme 3D"){
-			activeControllers +='j';
+		if(dsi.getJoystickName(3) == "Logitech Extreme 3D") {
+			activeControllers += 'j';
 		}
 		
 	}
