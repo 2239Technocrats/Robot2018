@@ -72,7 +72,7 @@ public class Robot extends IterativeRobot {
 	public static Robot instance;
 	// from
 	// http://wpilib.screenstepslive.com/s/4485/m/26401/l/255419-choosing-an-autonomous-program-from-smartdashboard
-
+	public AllOfTheStuff stuff = new AllOfTheStuff();
 	private boolean switchPlateOnLeft = false;
 	private boolean goingForSwitch = true;
 	public Timer timer; // Timer
@@ -84,6 +84,7 @@ public class Robot extends IterativeRobot {
 	public Solenoid rampDepoy;
 	// public Solenoid platformDeploy;
 	public Compressor myCompressor;
+//	stuff.addCompressor(myCompressor);//TODO fix
 	public PowerDistributionPanel myPDP;
 	public GearStateMachine autoGear;
 	public String defaultAutoName = "middle";
@@ -126,6 +127,7 @@ public class Robot extends IterativeRobot {
 	// MotorGroupRight(rightMotor2, rightMotor2, rightMotor3);
 
 	WPI_TalonSRX leftFollowerMotor2 = new WPI_TalonSRX(1);
+//	stuff.addTalon(leftFollowerMotor2, 1);//TODO fix
 	WPI_TalonSRX leftFollowerMotor1 = new WPI_TalonSRX(5);
 	WPI_TalonSRX rightFollowerMotor2 = new WPI_TalonSRX(6);
 	WPI_TalonSRX rightFollowerMotor1 = new WPI_TalonSRX(2);
@@ -576,7 +578,6 @@ public class Robot extends IterativeRobot {
 				gearShift.set(true); // open it
 				gearIsOpen = true;
 				System.out.println("open");
-
 			}
 		}
 		
@@ -692,21 +693,21 @@ public class Robot extends IterativeRobot {
 				curAction = null;
 			}
 			else {
-				// System.out.println("I'm going to move autonomously!"); // If
-				// we
-				// don't
-				// tell
-				// the
-				// robot
-				// not
-				// to
-				// turn,
-				// it
-				// turns.
-				// This
-				// isn't
-				// rocket
-				// science.
+				// System.out.println("I'm going to move autonomously!"); 	// If
+																			// we
+																			// don't
+																			// tell
+																			// the
+																			// robot
+																			// not
+																			// to
+																			// turn,
+																			// it
+																			// turns.
+																			// This
+																			// isn't
+																			// rocket
+																			// science.
 				boolean doneYet;
 				// System.out.println("Running accel in runAccelerator()");
 				doneYet = curAction.run();

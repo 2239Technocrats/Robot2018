@@ -11,6 +11,7 @@ public class AllOfTheStuff {
 	WPI_TalonSRX[] talons = new WPI_TalonSRX[11];
 	SpeedControllerGroup[] sides = new SpeedControllerGroup[2];
 	Compressor compressor;
+	WPI_TalonSRX[] encoderMotors;
 	public AllOfTheStuff(){}
 	public void addTalon(WPI_TalonSRX motor, int index){
 		talons[index] = motor;
@@ -24,6 +25,9 @@ public class AllOfTheStuff {
 	public void addCompressor(Compressor compressor){
 		this.compressor = compressor;
 	}
+	public void addEncoderMotors(WPI_TalonSRX[] encoderMotors){
+		this.encoderMotors = encoderMotors;
+	}
 	public Solenoid getSolenoid(int index){
 		return solenoids[index];
 	}
@@ -35,5 +39,8 @@ public class AllOfTheStuff {
 	}
 	public Compressor getCompressor(){
 		return compressor;
+	}
+	public WPI_TalonSRX[] getEncoderMotors(){
+		return encoderMotors;
 	}
 }

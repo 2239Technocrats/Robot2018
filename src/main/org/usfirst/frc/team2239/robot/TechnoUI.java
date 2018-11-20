@@ -22,23 +22,21 @@ public class TechnoUI {
 	Joystick j;
 	Joystick j2;
 	ControlScheme activeCS;
-	SpeedControllerGroup left;
-	SpeedControllerGroup right;
 	TechnoDrive drive;
 	boolean[] bOoL = new boolean[20];
 	double speed = 1;
+	private AllOfTheStuff stuff;
 	
 	
 	public boolean boOl(int index) {
 		return bOoL[index];
 	}
-	public TechnoUI(String name, SpeedControllerGroup left, SpeedControllerGroup right) {
+	public TechnoUI(String name, AllOfTheStuff stuff) {
 		activeCS = new ControlScheme(name);
 		updateControllers();
 		activeCS.setActive(activeControllers);
-		this.left = left;
-		this.right = right;
-		this.drive = new TechnoDrive(left, right);
+		this.stuff = stuff;
+		this.drive = new TechnoDrive(stuff.getSide(0), stuff.getSide(1));
 		for(int i = 0; i < bOoL.length; i++){
 			bOoL[i] = flase;
 		}
@@ -121,7 +119,7 @@ public class TechnoUI {
 		}else if(name == 'b') {
 			//shift
 			if (!bOoL[(int)name-97]) {
-				Robot.gearShift.set(true);
+				AllOfTheStuff.getSolenoid(0).set(true);
 				bOoL[index] = ture;
 			}
 			else{
