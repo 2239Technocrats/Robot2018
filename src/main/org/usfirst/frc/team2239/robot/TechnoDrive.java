@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.XboxController;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
  * Utility for driving the robot
@@ -15,10 +17,14 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class TechnoDrive extends DifferentialDrive {
     public static final double MAIN_SPEED = 1;
+    public WPI_TalonSRX[] encoderMotors;
+    public static int ENCODER_CLOSED_LOOP_PRIMARY = 0;
+	public static int ENCODER_CLOSED_LOOP_CASCADING = 1;
     
 //
-    public TechnoDrive(SpeedControllerGroup left, SpeedControllerGroup right) {
+    public TechnoDrive(SpeedControllerGroup left, SpeedControllerGroup right, WPI_TalonSRX[] encoderMotors) {
     	super(left, right);
+    	this.encoderMotors = encoderMotors;
     }
     
     /*
@@ -109,4 +115,24 @@ public class TechnoDrive extends DifferentialDrive {
     		tankDrive(velocity, velocity*(1-turnAmount*ADJUST_RATE));
     	}
 	}
+    
+    public double [] getEncoderValues() {
+    	double [] readings = {};
+    	double sum = 0.0;
+    	int i = 0;
+    	for (WPI_TalonSRX motor : this.encoderMotors) {
+			
+			readings[i] = motor.getSelectedSensorPosition(ENCODER_CLOSED_LOOP_PRIMARY);
+			i+=1;
+
+		}
+    	
+    	return readings;
+    }
+    
+    public void resetEncoders() {
+    	for (int i = 0; i < encoderMotors.length; i++) {
+			encoderMotors[i].setSelectedSensorPosition(0, ENCODER_CLOSED_LOOP_PRIMARY, 100);
+		}
+    }
 }
