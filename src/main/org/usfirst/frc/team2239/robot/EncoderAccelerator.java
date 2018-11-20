@@ -66,9 +66,7 @@ public class EncoderAccelerator implements Action {
 	{
 		if (!hasStarted) {
 			System.out.println("Starting EncoderAccelerator("+ this.moveTicks +")");
-			for (int i = 0; i < valueMotors.length; i++) {
-				valueMotors[i].setSelectedSensorPosition(0, ENCODER_CLOSED_LOOP_PRIMARY, 100);
-			}
+			driveTrain.resetEncoders();
 			hasStarted = true;
 			return false;
 		}

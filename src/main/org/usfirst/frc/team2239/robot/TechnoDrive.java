@@ -129,4 +129,10 @@ public class TechnoDrive extends DifferentialDrive {
     	
     	return readings;
     }
+    
+    public void resetEncoders() {
+    	for (int i = 0; i < encoderMotors.length; i++) {
+			encoderMotors[i].setSelectedSensorPosition(0, ENCODER_CLOSED_LOOP_PRIMARY, 100);
+		}
+    }
 }
