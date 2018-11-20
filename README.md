@@ -65,10 +65,10 @@ Retruns a boolean, true if the POV of controllerClass is in the position defined
   
 Required Motor Imports
 --  
-`import com.ctre.phoenix.motorcontroll.can.WPI_TalonSRX` Motorcontroller's api  
+`import com.ctre.phoenix.motorcontroll.can.WPI_TalonSRX` Motor controller's api  
 
 Controlling Motors
 --  
-`WPI_TalonSRX.set(double powerlevel);`  
-Sets the level of power provided to motor controller of typ WPI_TalonSRX to powerlevel.  
-**1.0 >= powerlevel >= -1.0**
+`WPI_TalonSRX.set(double powerLevel);`  
+Sets the level of power provided to motor controller of typ WPI_TalonSRX to powerLevel.  
+**1.0 >= powerLevel >= -1.0**
