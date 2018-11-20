@@ -2,7 +2,7 @@ package main.org.usfirst.frc.team2239.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import java.util.stream.*;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
 //TODO finish documentation and changing this from rotationAccelerator into the EncoderAccelerator
@@ -136,13 +136,8 @@ public class EncoderAccelerator implements Action {
 		//TODO don't just average - also check to see if any of the encoders are way off or may be broken and ignore those ones.
 		double sum = 0.0;
 		double reading = 0.0;
-		for (WPI_TalonSRX motor : this.valueMotors) {
-			
-			reading = motor.getSelectedSensorPosition(ENCODER_CLOSED_LOOP_PRIMARY);
-			sum += reading;
-//			System.err.println("Encoder reading: " + reading);
-		}
-		double avg = sum/this.valueMotors.length; //compute the average encoder value
+		
+		double avg = DoubleStream.of(driveTrain.getEncoderValues()).sum()/driveTrain.getEncoderValues().length; //compute the average encoder value
 //		System.out.println("the average encoder values from sensors: " + avg);
 		return -avg; //Had to put a negative sign because the encoder is giving opposite values 
 	}
