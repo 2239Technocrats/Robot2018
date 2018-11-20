@@ -143,7 +143,7 @@ public class Robot extends IterativeRobot {
 	WPI_TalonSRX[] encoderMotors = new WPI_TalonSRX[] { rightFollowerMotor2, leftFollowerMotor1};
 	WPI_TalonSRX[] encoderLiftMotor = new WPI_TalonSRX[] { lift };
 	// TODO fix just testing
-	TechnoDrive drive = new TechnoDrive(left, right); // class that handles
+	TechnoDrive drive = new TechnoDrive(left, right, encoderMotors); // class that handles
 													  // basic drive
 													  // operations
 	Boolean open = true;
