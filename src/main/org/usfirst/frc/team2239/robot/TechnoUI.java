@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 public class TechnoUI {
 	
 	private final static boolean flase = false;
-	
+	private final static boolean ture = true;
 	DriverStation dsi;
 	private int scheme = -1;
 	GenericHID[] activeControllers = new GenericHID[4];
@@ -74,7 +74,8 @@ public class TechnoUI {
 	public void controlRun(ControlScheme activeCS) {
 		for (int i = 0; i < activeCS.triggerTypes.length + 1; i++) {
 			if (i<activeCS.triggerTypes.length) {
-			runTriggers(activeCS.triggerTypes[i][1], activeCS.triggerTypes[i][2], activeCS.triggerTypes[i][3]);
+			GenericHID placeholder = null;
+			runTriggers(activeCS.triggerTypes[i][1], activeCS.triggerTypes[i][2], activeCS.triggerTypes[i][3], placeholder);//TODO replace
 			} else {
 				if (activeControllers[0].getName().charAt(0) == 'X' && activeControllers[2].getName().charAt(0) != 'L') {
 					drive.tankDrive(x, speed);
@@ -98,24 +99,71 @@ public class TechnoUI {
 			}
 		}
 	}
-	public void runTriggers(char name, char type, char index) {
+	public void runTriggers(char name, char type, char index, GenericHID controller) {
 		int num = (int)index;
 		
-		if (num == 666666666) {
-			System.out.println(num);
-		}
 		if (name == 'a') {
-			if (type == 'b') {
-				if (gOtAkEaToAsTeRbAtHlOl == flase) {
-					
+			//speed
+			if (type == 'b' && controller.getRawButtonPressed(num)) {
+				if (!bOoL[(int)name-97]) {
+					speed = .7;
+					bOoL[index] = ture;
+				}
+				else{
+					speed = 1.0;
+					bOoL[index] = flase;
 				}
 			} else if (type == 'a') {
-				
+				speed = controller.getRawAxis(index);
 			} else {
 				System.out.println("invalid type for speed: " + type);	
 			}
-		} else if(name == 'b') {
-			
+		}else if(name == 'b') {
+			//shift
+			if (!bOoL[(int)name-97]) {
+				Robot.gearShift.set(true);
+				bOoL[index] = ture;
+			}
+			else{
+				speed = 1.0;
+				bOoL[index] = flase;
+			}
+		}else if(name == 'c') {
+			//grabber
+		}else if(name == 'd') {
+			//liftRaise
+		}else if(name == 'e') {
+			//liftLower
+		}else if(name == 'f') {
+			//grabberSucc
+		}else if(name == 'g') {
+			//grabberBlow
+		}else if(name == 'h') {
+			//CSVSave
+		}else if(name == 'i') {
+			//toggleX
+		}else if(name == 'j') {
+			//toggleXX
+		}else if(name == 'k') {
+			//toggleXJ
+		}else if(name == 'l') {
+			//toggleJ
+		}else if(name == 'm') {
+			//toggleJJ
+		}else if(name == 'n') {
+			//update control scheme
+		}else if(name == 'o') {
+			//leftSide (tankDrive)
+		}else if(name == 'p') {
+			//rightSide (tankDrive)
+		}else if(name == 'q') {
+			//forwards (arcadeDrive)
+		}else if(name == 'r') {
+			//rotation (arcadeDrive)
+		}else if(name == 's') {
+			//none
+		}else{
+			System.out.println("@TechnoUI @controlRun paramaters: name: " + name + " type: " + type + " index: " + index + " controller: " + controller.getName());
 		}
 	}
 }
