@@ -1,4 +1,4 @@
-package test.org.usfirst.frc.team2239.robot;
+package frc.robot;
 
 import main.org.usfirst.frc.team2239.robot.WPI_TalonSRX;
 
