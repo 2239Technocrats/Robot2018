@@ -1,7 +1,10 @@
 # Robot 2018
 FIRST team 2239's robot code for 2018
 
-# Documentation
+# Documentation  
+Documentation can be found on first's website here:  
+http://first.wpi.edu/FRC/roborio/release/docs/java/  
+  
 Controller Required Imports
 --  
 `import edu.wpi.first.wpilibj.XboxController;` Initalizing and using Xbox Controllers  
